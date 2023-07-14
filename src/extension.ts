@@ -1,3 +1,4 @@
+import { getSettings } from "./utils";
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -38,6 +39,14 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(lts, stl);
 }
 
+function getConfig() {
+  const extensionSettings = getSettings("line-length-sorter", [
+    "removeBlank",
+  ]);
+
+  return { extensionSettings };
+}
+
 function getSelectedLines(editor: vscode.TextEditor): {
   selection: vscode.Selection;
   lines: string[];
@@ -50,9 +59,17 @@ function getSelectedLines(editor: vscode.TextEditor): {
 
 function sortLines(lines: string[], type: "lts" | "stl"): string[] {
   if (type === "lts") {
-    return lines.sort((a, b) => b.length - a.length);
+    lines.sort((a, b) => b.length - a.length);
   } else {
-    return lines.sort((a, b) => a.length - b.length);
+    lines.sort((a, b) => a.length - b.length);
+  }
+
+  const { extensionSettings } = getConfig();
+
+  if (extensionSettings.removeBlank) {
+    return lines.filter((line) => line.length > 0);
+  } else {
+    return lines;
   }
 }
 

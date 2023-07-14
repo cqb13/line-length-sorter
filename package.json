@@ -2,7 +2,7 @@
   "name": "line-length-sorter",
   "displayName": "Line Length Sorter",
   "description": "Sorts highlighted lines by their length.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/cqb13/line-length-sorter"
@@ -54,6 +54,17 @@
           "when": "editorTextFocus"
         }
       ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Line Length Sorter",
+      "properties": {
+        "line-length-sorter.removeBlank": {
+          "type": "boolean",
+          "default": true,
+          "description": "Remove blank lines when sorting."
+        }
+      }
     }
   },
   "scripts": {

@@ -8,6 +8,12 @@ Sorts highlighted lines by their length.
     - Longest to shortest
     - Shortest to longest
 
+## Extension Settings
+
+This extension contributes the following settings:
+
+- `line-length-sorter.removeBlank`: Removes blank lines from selection during sorting. (default: `true`)
+
 ## Usage
 
 ### Method 1
